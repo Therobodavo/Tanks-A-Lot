@@ -1,0 +1,27 @@
+﻿  AppClass.cpp
+  Generating code
+  13 of 1184 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  TanksALot_Main.vcxproj -> D:\College Stuff\C++\TanksALot\TanksALot\Z_DELETE\TanksALot_Main.exe
+  Copying files...
+          1 file(s) copied.
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Basic-Instanced.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Basic.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Basic.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\BasicColor.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\BasicColor.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Line.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Line.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Minimal.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Minimal.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\MinimalRed.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Simplex.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Simplex.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Skybox.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Skybox.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Text.fs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Text.vs
+  D:\College Stuff\C++\TanksALot\TanksALot\include\Simplex\Shaders\Wireframe.fs
+  17 File(s) copied
