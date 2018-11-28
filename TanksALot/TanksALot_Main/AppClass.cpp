@@ -3,13 +3,20 @@ using namespace Simplex;
 void Application::InitVariables(void)
 {
 	//Set the position and target of the camera
-	m_pCameraMngr->SetPositionTargetAndUp(vector3(-0.0f, 3,0), vector3(1.0f, 3, 0), AXIS_Y);			//Up
+	m_pCameraMngr->SetPositionTargetAndUp(vector3(-0.0f, 3, 0), vector3(1.0f, 3, 0), AXIS_Y);		//Up
+
+	player = new Player();
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Player");
-	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Joe");
-	m_pEntityMngr->GetEntity(1)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "PlayerBase");
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "PlayerTop");
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
+
+
+	m_pEntityMngr->GetEntity(2)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
+
+	
 	//m_pEntityMngr->Update();
 }
 void Application::Update(void)
@@ -22,10 +29,15 @@ void Application::Update(void)
 
 	//Is the first person camera active?
 	CameraRotation();
-	
-	vector3 playerPos = m_pCameraMngr->GetPosition();
-	//m_pEntityMngr->GetEntity(0)->SetModelMatrix(m_pCameraMngr->GetViewMatrix() * glm::translate( vector3(-4,2,.5)));
-	m_pEntityMngr->GetEntity(0)->SetModelMatrix(glm::translate(playerPos - vector3(-4, 2, .5)));
+
+
+	m_pEntityMngr->GetEntity(0)->SetModelMatrix(player->getModel());
+
+	m_pCameraMngr->SetPositionTargetAndUp(player->getCamPos(), player->getPlayerPos(), AXIS_Y);
+
+
+
+	//m_pEntityMngr->GetEntity(0)->SetModelMatrix(glm::translate(playerPos - vector3(-4, 2, .5)));
 
 	//Update Entity Manager
 	//m_pEntityMngr->Update();

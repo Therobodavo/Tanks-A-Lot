@@ -63,7 +63,7 @@ void Application::ProcessMouseScroll(sf::Event a_event)
 
 	if (fMultiplier)
 		fSpeed *= 2.0f;
-	m_pCameraMngr->MoveForward(-fSpeed);
+	//m_pCameraMngr->MoveForward(-fSpeed);
 }
 //Keyboard
 void Application::ProcessKeyPressed(sf::Event a_event)
@@ -393,6 +393,8 @@ void Application::CameraRotation(float a_fSpeed)
 		fDeltaMouse = static_cast<float>(MouseY - CenterY);
 		fAngleX += fDeltaMouse * a_fSpeed;
 	}
+
+
 	//Change the Yaw and the Pitch of the camera
 	m_pCameraMngr->ChangeYaw(fAngleY * 0.25f);
 	//m_pCameraMngr->ChangePitch(-fAngleX * 0.25f);
@@ -416,6 +418,22 @@ void Application::ProcessKeyboard(void)
 	if (bMultiplier)
 		fMultiplier = 5.0f;
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		player->moveFoward(.05 * fMultiplier);
+
+	}
+		
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		player->moveBack(-.05 * fMultiplier);
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		player->rotateRight();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		player->rotateLeft();
+
+	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -432,6 +450,8 @@ void Application::ProcessKeyboard(void)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		m_pCameraMngr->MoveVertical(m_fMovementSpeed * fMultiplier);
+		*/
+		
 #pragma endregion
 }
 //Joystick

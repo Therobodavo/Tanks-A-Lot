@@ -9,7 +9,7 @@ Date: 2017/06
 
 #include "ControllerConfiguration.h"
 #include "imgui\ImGuiObject.h"
-
+#include "Player.h"
 #include "MyEntityManager.h"
 #include "OcTree.h"
 namespace Simplex
@@ -54,6 +54,9 @@ private:
 	MeshManager* m_pMeshMngr = nullptr; //Mesh Manager
 	CameraManager* m_pCameraMngr = nullptr; //Singleton for the camera manager
 	
+	
+	Player* player = nullptr;
+
 	ControllerInput* m_pController[8]; //Controller
 	uint m_uActCont = 0; //Active Controller of the Application
 
