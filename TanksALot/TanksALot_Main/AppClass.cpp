@@ -31,13 +31,11 @@ void Application::Update(void)
 	CameraRotation();
 
 
-	m_pEntityMngr->GetEntity(0)->SetModelMatrix(player->getModel());
+	m_pEntityMngr->GetEntity(0)->SetModelMatrix(player->getModelBase()); //putting model in entity
+	m_pEntityMngr->GetEntity(1)->SetModelMatrix(player->getModelTop()); // creating top part of tank
 
-	m_pCameraMngr->SetPositionTargetAndUp(player->getCamPos(), player->getPlayerPos(), AXIS_Y);
+	m_pCameraMngr->SetPositionTargetAndUp(player->getCamPos(), player->getTargetPos(), AXIS_Y); //setting the cordinates for the camera
 
-
-
-	//m_pEntityMngr->GetEntity(0)->SetModelMatrix(glm::translate(playerPos - vector3(-4, 2, .5)));
 
 	//Update Entity Manager
 	//m_pEntityMngr->Update();

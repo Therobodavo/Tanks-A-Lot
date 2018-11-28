@@ -1,4 +1,12 @@
-﻿  Player.cpp
+﻿  AppClass.cpp
+  AppClassControls.cpp
+d:\profiles\mro5772\source\repos\tanks-a-lot\tanksalot\tanksalot_main\appclasscontrols.cpp(422): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\profiles\mro5772\source\repos\tanks-a-lot\tanksalot\tanksalot_main\appclasscontrols.cpp(427): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  AppClassGUI.cpp
+  AppClassMain.cpp
+  Main.cpp
+  Player.cpp
+  Generating Code...
   TanksALot_Main.vcxproj -> D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\Z_DELETE\TanksALot_Main_d.exe
   Copying Shaders...
   D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic-Instanced.vs

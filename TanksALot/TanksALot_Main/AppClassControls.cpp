@@ -416,7 +416,7 @@ void Application::ProcessKeyboard(void)
 	float fMultiplier = 1.0f;
 
 	if (bMultiplier)
-		fMultiplier = 5.0f;
+		fMultiplier = 4.0f;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		player->moveFoward(.05 * fMultiplier);
@@ -432,6 +432,13 @@ void Application::ProcessKeyboard(void)
 		player->rotateRight();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		player->rotateLeft();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+		player->aimLeft();
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		player->aimRight();
 
 	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
