@@ -9,12 +9,13 @@ void Application::InitVariables(void)
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "PlayerBase");
-	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "PlayerTop");
+	m_pEntityMngr->AddEntity("Minecraft\\ModelTB.obj", "PlayerBase");
+	m_pEntityMngr->AddEntity("Minecraft\\ModelTT.obj", "PlayerTop");
+	m_pEntityMngr->AddEntity("Minecraft\\ModelTH.obj", "PlayerHead");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
 
 
-	m_pEntityMngr->GetEntity(2)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
+	m_pEntityMngr->GetEntity(3)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
 
 	
 	//m_pEntityMngr->Update();
@@ -33,6 +34,7 @@ void Application::Update(void)
 
 	m_pEntityMngr->GetEntity(0)->SetModelMatrix(player->getModelBase()); //putting model in entity
 	m_pEntityMngr->GetEntity(1)->SetModelMatrix(player->getModelTop()); // creating top part of tank
+	m_pEntityMngr->GetEntity(2)->SetModelMatrix(player->getModelHead()); // creating top part of tank
 
 	m_pCameraMngr->SetPositionTargetAndUp(player->getCamPos(), player->getTargetPos(), AXIS_Y); //setting the cordinates for the camera
 

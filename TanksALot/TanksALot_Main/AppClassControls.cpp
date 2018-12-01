@@ -433,12 +433,28 @@ void Application::ProcessKeyboard(void)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		player->rotateLeft();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		player->camLeft();
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		player->camRight();
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		player->aimLeft();
 
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		player->aimRight();
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		player->aimUp();
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		player->aimDown();
 
 	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))

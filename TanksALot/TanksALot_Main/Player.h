@@ -9,14 +9,21 @@ namespace Simplex
 	{
 		//float containing angle of roation of the base
 		float rotationBase;
+		float rotationBase2;
 		//float containing angle of roation of the top
 		float rotationTop;
+		float rotationTopUp;
+
+		float rotationCam;
+
 		//vector position of the camera
 		vector3 camPos;
 		//vector position of camera target (not the same as the tanks position)
 		vector3 targetPos;
 		//matrix of the model
 		matrix4 model;
+
+		matrix4 top;
 	public:
 		Player();
 		~Player();
@@ -30,6 +37,8 @@ namespace Simplex
 		//method returning matrix model of top
 		matrix4 getModelTop(void);
 
+		matrix4 getModelHead(void);
+
 		//method for moving foward
 		void moveFoward(float move);
 		//method for moving back
@@ -42,6 +51,14 @@ namespace Simplex
 		void aimRight(void);
 		//method for roating top left
 		void aimLeft(void);
+
+		//method for roating top right
+		void aimUp(void);
+		//method for roating top left
+		void aimDown(void);
+
+		void camLeft(void);
+		void camRight(void);
 	};
 }
 
