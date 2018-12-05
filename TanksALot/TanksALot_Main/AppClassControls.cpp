@@ -456,6 +456,18 @@ void Application::ProcessKeyboard(void)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		player->aimDown();
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		if (BulletTimer <= 0)
+		{
+			Bullet a = Bullet(player->getModelTop());
+			BulletTracker.push_back(a);
+			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Bullet");
+
+			BulletTimer = 60;
+		}
+		
+	}
 	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);

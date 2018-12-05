@@ -57,7 +57,8 @@ private:
 	
 	
 	Player* player = nullptr;
-	Bullet* bullet1 = nullptr;
+	int BulletTimer = 0;
+	std::vector<Bullet> BulletTracker;
 
 	ControllerInput* m_pController[8]; //Controller
 	uint m_uActCont = 0; //Active Controller of the Application

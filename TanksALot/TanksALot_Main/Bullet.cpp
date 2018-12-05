@@ -5,9 +5,9 @@ using namespace std;
 using namespace Simplex;
 
 
-Bullet::Bullet(Simplex::Player Vehicle)
+Bullet::Bullet(matrix4 Source)
 {
-	model = Vehicle.getModelTop();
+	model = Source;
 }
 
 
@@ -15,7 +15,7 @@ Bullet::~Bullet()
 {
 }
 
-void Simplex::Bullet::Move(float speed = 0.5f)
+matrix4 Simplex::Bullet::Move(float speed = 0.5f)
 {
-	model = glm::translate(model, vector3(speed, 0, 0));
+	return model = glm::translate(model, vector3(speed, 0, 0));
 }

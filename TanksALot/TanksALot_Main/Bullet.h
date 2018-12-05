@@ -9,12 +9,12 @@ namespace Simplex
 	{
 		
 	public:
-		Bullet(Player Vehicle);
+		Bullet(matrix4 Source);
 		~Bullet();
 	//matrix of the model
 		matrix4 model;
 		//method for moving foward
-		void Move(float speed);
+		matrix4 Move(float speed);
 		
 	};
 }

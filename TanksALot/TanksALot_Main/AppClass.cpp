@@ -14,15 +14,6 @@ void Application::InitVariables(void)
 	m_pEntityMngr->AddEntity("Minecraft\\ModelTH.obj", "PlayerHead");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
 
-
-	//Bullet Test
-	bullet1 = new Bullet(*player);
-
-	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Bullet");
-
-	m_pEntityMngr->GetEntity(4)->SetModelMatrix(bullet1->model); 
-
-//End Bullet Test
 	m_pEntityMngr->GetEntity(3)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
 	
 	
@@ -48,8 +39,13 @@ void Application::Update(void)
 
 
 	//Bullet Test
-	m_pEntityMngr->GetEntity(4)->SetModelMatrix(player->getModelTop());
+	for (int i = 0; i < BulletTracker.size(); i++)
+	{
+		BulletTracker[i].Move(0.5f);
+		m_pEntityMngr->GetEntity(i + 4)->SetModelMatrix(BulletTracker[i].model);
+	}
 
+	BulletTimer--;
 	//End Bullet Test
 
 
