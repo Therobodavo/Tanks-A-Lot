@@ -6,7 +6,7 @@ void Application::InitVariables(void)
 	m_pCameraMngr->SetPositionTargetAndUp(vector3(-0.0f, 3, 0), vector3(1.0f, 3, 0), AXIS_Y);		//Up
 
 	player = new Player();
-
+	
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
 	m_pEntityMngr->AddEntity("Minecraft\\ModelTB.obj", "PlayerBase");
@@ -15,8 +15,16 @@ void Application::InitVariables(void)
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
 
 
-	m_pEntityMngr->GetEntity(3)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
+	//Bullet Test
+	bullet1 = new Bullet(*player);
 
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Bullet");
+
+	m_pEntityMngr->GetEntity(4)->SetModelMatrix(bullet1->model); 
+
+//End Bullet Test
+	m_pEntityMngr->GetEntity(3)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
+	
 	
 	//m_pEntityMngr->Update();
 }
@@ -37,6 +45,12 @@ void Application::Update(void)
 	m_pEntityMngr->GetEntity(2)->SetModelMatrix(player->getModelHead()); // creating top part of tank
 
 	m_pCameraMngr->SetPositionTargetAndUp(player->getCamPos(), player->getTargetPos(), AXIS_Y); //setting the cordinates for the camera
+
+
+	//Bullet Test
+	m_pEntityMngr->GetEntity(4)->SetModelMatrix(player->getModelTop());
+
+	//End Bullet Test
 
 
 	//Update Entity Manager

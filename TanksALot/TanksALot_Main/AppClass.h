@@ -10,6 +10,7 @@ Date: 2017/06
 #include "ControllerConfiguration.h"
 #include "imgui\ImGuiObject.h"
 #include "Player.h"
+#include "Bullet.h"
 #include "MyEntityManager.h"
 #include "OcTree.h"
 namespace Simplex
@@ -56,6 +57,7 @@ private:
 	
 	
 	Player* player = nullptr;
+	Bullet* bullet1 = nullptr;
 
 	ControllerInput* m_pController[8]; //Controller
 	uint m_uActCont = 0; //Active Controller of the Application

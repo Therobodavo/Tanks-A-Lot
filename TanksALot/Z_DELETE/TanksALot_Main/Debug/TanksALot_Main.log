@@ -1,22 +1,21 @@
-﻿  Player.cpp
-d:\profiles\mro5772\source\repos\tanks-a-lot\tanksalot\tanksalot_main\player.cpp(81): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  TanksALot_Main.vcxproj -> D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\Z_DELETE\TanksALot_Main_d.exe
+﻿  AppClass.cpp
+  TanksALot_Main.vcxproj -> C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\Z_DELETE\TanksALot_Main_d.exe
   Copying Shaders...
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic-Instanced.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\BasicColor.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\BasicColor.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Line.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Line.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Minimal.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Minimal.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\MinimalRed.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Simplex.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Simplex.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Skybox.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Skybox.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Text.fs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Text.vs
-  D:\Profiles\mro5772\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Wireframe.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic-Instanced.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\BasicColor.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\BasicColor.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Line.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Line.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Minimal.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Minimal.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\MinimalRed.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Simplex.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Simplex.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Skybox.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Skybox.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Text.fs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Text.vs
+  C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Wireframe.fs
   17 File(s) copied
