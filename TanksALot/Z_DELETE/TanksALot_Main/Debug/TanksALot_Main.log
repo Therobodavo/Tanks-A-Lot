@@ -1,6 +1,5 @@
-﻿  AppClassControls.cpp
-c:\users\schru\source\repos\tanks-a-lot\tanksalot\tanksalot_main\appclasscontrols.cpp(422): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\schru\source\repos\tanks-a-lot\tanksalot\tanksalot_main\appclasscontrols.cpp(427): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  AppClass.cpp
+c:\users\schru\source\repos\tanks-a-lot\tanksalot\tanksalot_main\appclass.cpp(42): warning C4018: '<': signed/unsigned mismatch
   TanksALot_Main.vcxproj -> C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\Z_DELETE\TanksALot_Main_d.exe
   Copying Shaders...
   C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic-Instanced.vs

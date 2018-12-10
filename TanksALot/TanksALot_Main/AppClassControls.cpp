@@ -461,6 +461,7 @@ void Application::ProcessKeyboard(void)
 		if (BulletTimer <= 0)
 		{
 			Bullet a = Bullet(player->getModelTop());
+			
 			BulletTracker.push_back(a);
 			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Bullet");
 
