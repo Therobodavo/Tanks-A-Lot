@@ -189,6 +189,15 @@ private:
 	void ReleaseControllers(void);
 #pragma endregion
 
+#pragma region Custom Methods
+
+#pragma endregion
+	/*
+		USAGE: Deletes Bullet Obj
+		ARGUMENTS: Bullet obj
+		OUTPUT: ---
+		*/
+	void DeleteBullet(Bullet bullet);
 #pragma region Application Controls
 	/*
 	USAGE: Manage constant keyboard state

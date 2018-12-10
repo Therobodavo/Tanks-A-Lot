@@ -9,7 +9,7 @@ namespace Simplex
 	{
 		
 	public:
-		Bullet(matrix4 Source);
+		Bullet(matrix4 Source, std::string id = "None");
 		~Bullet();
 		//matrix of the model
 		matrix4 model;
@@ -18,8 +18,17 @@ namespace Simplex
 		//Bullet Life
 		float BulletLife;
 
-		//method for moving foward
+	//Methods
+
+		//Move Model forward by 'Speed'.
 		matrix4 Move(float speed);
+
+		/*
+		Usage: Copy Assignment Operator
+		Arguments: class object to copy
+		Output: bool
+		*/
+		bool operator==(Bullet const& other) const;
 		
 	};
 }

@@ -57,8 +57,7 @@ void Application::Update(void)
 		//Delete if expired
 		if (BulletTracker[i].BulletLife <= 0)
 		{
-			m_pEntityMngr->RemoveEntity(BulletTracker[i].ID);
-			BulletTracker.erase(BulletTracker.begin() + i);
+			DeleteBullet(BulletTracker[i]);
 			i--;
 		}
 	}

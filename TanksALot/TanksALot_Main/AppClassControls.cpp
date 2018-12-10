@@ -460,10 +460,10 @@ void Application::ProcessKeyboard(void)
 	{
 		if (ReloadTimer <= 0)
 		{
+			//Prep ID
+			std::string id = "Bullet" + std::to_string(BulletNextID);
 			//Create Bullet at Turret
-			Bullet a = Bullet(player->getModelTop());
-			//Set ID
-			a.ID = "Bullet" + std::to_string(BulletNextID);
+			Bullet a = Bullet(player->getModelTop(), id);
 			//Update IDTracker
 			BulletNextID++;
 			//Add Bullet to BulletTracker
