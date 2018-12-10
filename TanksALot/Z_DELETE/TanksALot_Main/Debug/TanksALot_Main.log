@@ -1,5 +1,4 @@
-﻿  AppClass.cpp
-c:\users\schru\source\repos\tanks-a-lot\tanksalot\tanksalot_main\appclass.cpp(42): warning C4018: '<': signed/unsigned mismatch
+﻿  AppClassGUI.cpp
   TanksALot_Main.vcxproj -> C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\Z_DELETE\TanksALot_Main_d.exe
   Copying Shaders...
   C:\Users\schru\Source\Repos\Tanks-A-Lot\TanksALot\include\Simplex\Shaders\Basic-Instanced.vs

@@ -7,9 +7,13 @@ using namespace Simplex;
 
 Bullet::Bullet(matrix4 Source)
 {
+	//Set Model (+Minor Adjustments for Turret)
 	model = Source;
 	model *= glm::scale(vector3(0.3f, 0.3f, 0.3f));
 	model *= glm::translate(IDENTITY_M4, vector3(0.f, 5.0f, -0.5f));
+
+	//SetBulletLifeSpawn
+	BulletLife = 30;
 }
 
 

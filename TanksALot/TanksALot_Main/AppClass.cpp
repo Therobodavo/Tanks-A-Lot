@@ -38,15 +38,32 @@ void Application::Update(void)
 	m_pCameraMngr->SetPositionTargetAndUp(player->getCamPos(), player->getTargetPos(), AXIS_Y); //setting the cordinates for the camera
 
 
-	//Bullet Test
+	//Bullet Code
+	//Set Clock (Static)
+	static uint uClock = m_pSystem->GenClock(); //generate a new clock for that timer
+	//Update Timer
+	ftimer = m_pSystem->GetDeltaTime(uClock);
+	//Update ReloadTimer;
+	ReloadTimer -= ftimer;
+	if (ReloadTimer < 0)ReloadTimer = 0;
+	//Update Bullet Models, check LifeTimer
 	for (int i = 0; i < BulletTracker.size(); i++)
 	{
 		BulletTracker[i].Move(0.5f);
-		m_pEntityMngr->GetEntity(i + 4)->SetModelMatrix(BulletTracker[i].model);
+		m_pEntityMngr->SetModelMatrix(BulletTracker[i].model, BulletTracker[i].ID);
+
+		//Update Bullet Life
+		BulletTracker[i].BulletLife -= ftimer;
+		//Delete if expired
+		if (BulletTracker[i].BulletLife <= 0)
+		{
+			m_pEntityMngr->RemoveEntity(BulletTracker[i].ID);
+			BulletTracker.erase(BulletTracker.begin() + i);
+			i--;
+		}
 	}
 
-	BulletTimer--;
-	//End Bullet Test
+	//End Bullet Code
 
 
 	//Update Entity Manager

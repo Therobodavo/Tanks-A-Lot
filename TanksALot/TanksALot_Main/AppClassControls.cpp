@@ -419,12 +419,12 @@ void Application::ProcessKeyboard(void)
 		fMultiplier = 4.0f;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		player->moveFoward(.05 * fMultiplier);
+		player->moveFoward(.05f * fMultiplier);
 
 	}
 		
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		player->moveBack(-.05 * fMultiplier);
+		player->moveBack(-.05f * fMultiplier);
 	
 	}
 
@@ -458,14 +458,20 @@ void Application::ProcessKeyboard(void)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (BulletTimer <= 0)
+		if (ReloadTimer <= 0)
 		{
+			//Create Bullet at Turret
 			Bullet a = Bullet(player->getModelTop());
-			
+			//Set ID
+			a.ID = "Bullet" + std::to_string(BulletNextID);
+			//Update IDTracker
+			BulletNextID++;
+			//Add Bullet to BulletTracker
 			BulletTracker.push_back(a);
-			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Bullet");
-
-			BulletTimer = 60;
+			//Add Bullet to EntityManager
+			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", a.ID);
+			//ResetReloadTimer
+			ReloadTimer = ReloadTimerMax;
 		}
 		
 	}

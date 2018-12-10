@@ -57,8 +57,18 @@ private:
 	
 	
 	Player* player = nullptr;
-	int BulletTimer = 0;
+
+	//DeltaTime
+	float ftimer = 0;
+	//ReloadTimerMax
+	float ReloadTimerMax = 5;
+	//CurrentReloadTimer;
+	float ReloadTimer = 0;	//store the new timer
+	
+	//BulletTracker Vector<Bullet>
 	std::vector<Bullet> BulletTracker;
+	//Bullet ID Tracker
+	int BulletNextID = 0;
 
 	ControllerInput* m_pController[8]; //Controller
 	uint m_uActCont = 0; //Active Controller of the Application
