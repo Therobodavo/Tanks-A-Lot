@@ -45,6 +45,13 @@ void Application::Update(void)
 	//Is the first person camera active?
 	CameraRotation();
 
+	// --- Update Timer ---
+	//Set Clock (Static)
+	static uint uClock = m_pSystem->GenClock(); //generate a new clock for that timer
+	//Update Timer
+	ftimer = m_pSystem->GetDeltaTime(uClock);
+	// --- Update Timer ---
+
 
 	m_pEntityMngr->GetEntity(0)->SetModelMatrix(player->getModelBase()); //putting model in entity
 	m_pEntityMngr->GetEntity(1)->SetModelMatrix(player->getModelTop()); // creating top part of tank
@@ -60,6 +67,11 @@ void Application::Update(void)
 		m_pEntityMngr->GetEntity(check + 2)->SetModelMatrix(eni->getModelHead()); // creating top part of tank
 		eni->aiMovement();
 		check += 3;
+		//Check reload status, Fire if able.
+		if (eni->aiReloadStatus(ftimer) == true)
+		{
+			FireBulletEnemy(eni);
+		}
 	}
 
 
@@ -69,10 +81,7 @@ void Application::Update(void)
 
 
 	//Bullet Code
-	//Set Clock (Static)
-	static uint uClock = m_pSystem->GenClock(); //generate a new clock for that timer
-	//Update Timer
-	ftimer = m_pSystem->GetDeltaTime(uClock);
+	
 	//Update ReloadTimer;
 	ReloadTimer -= ftimer;
 	if (ReloadTimer < 0)ReloadTimer = 0;
@@ -125,9 +134,19 @@ void Application::Release(void)
 {
 	//release GUI
 	ShutdownGUI();
+
+	//Deletes each pointer in eniTanks(sets to Null so don't have to worry about index confusion)
+	for (int i = 0; i < eniTanks.size(); i++)
+	{
+		SafeDelete(eniTanks[i]);
+	}
+
+	/* - - -Doesn't work, deletes the "eni" made by the for each statement, doesn't change eniTanks at all- - -
 	for each (EnemyTank* eni in eniTanks)
 	{
 		SafeDelete(eni);
 	}
+	*/
+
 	SafeDelete(player);
 }

@@ -21,9 +21,9 @@ Bullet::Bullet(matrix4 Source, std::string id)
 
 	glm::vec4 Position = glm::vec4(glm::vec3(0.0f), 1.0f);
 	float yPos = (Position * model).y;
-	accl = 0.5f + (yPos * 0.1f);
+	accl = 0.5f + (yPos * 0.1f); //Old: yPos * 0.1f
 	accl2 = accl;
-	spd = (0.5f - (yPos * 0.1f));
+	spd = (0.5f - (yPos * 0.1f)); //Old: yPos * 0.1f
 }
 
 
@@ -35,7 +35,7 @@ matrix4 Simplex::Bullet::Move(float speed = 0.5f)
 {
 	//bullets move slightly when tank moves, will change this method to make that stop
 	model = glm::translate(model, vector3(spd, 0, 0));
-	spd += 0.01f;
+	spd += 0.025f; //Old 0.01f (Goes further before hitting ground)
 	
 	glm::vec4 Position = glm::vec4(glm::vec3(0.0f), 1.0f);
 	vector3 height = glm::translate(model, vector3(0, 0, 0)) * Position;

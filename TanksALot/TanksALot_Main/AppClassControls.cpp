@@ -458,22 +458,7 @@ void Application::ProcessKeyboard(void)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (ReloadTimer <= 0)
-		{
-			//Prep ID
-			std::string id = "Bullet" + std::to_string(BulletNextID);
-			//Create Bullet at Turret
-			Bullet a = Bullet(player->getModelTop(), id);
-			//Update IDTracker
-			BulletNextID++;
-			//Add Bullet to BulletTracker
-			BulletTracker.push_back(a);
-			//Add Bullet to EntityManager
-			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", a.ID);
-			//ResetReloadTimer
-			ReloadTimer = ReloadTimerMax;
-		}
-		
+		FireBulletPlayer();		
 	}
 	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))

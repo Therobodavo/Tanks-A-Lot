@@ -199,8 +199,20 @@ private:
 		USAGE: Deletes Bullet Obj
 		ARGUMENTS: Bullet obj
 		OUTPUT: ---
-		*/
+	*/
 	void DeleteBullet(Bullet bullet);
+	/*
+		USAGE: Create Bullet from player
+		ARGUMENTS: ---
+		OUTPUT: ---
+	*/
+	void FireBulletPlayer();
+	/*
+		USAGE: Create Bullet from Enemy
+		ARGUMENTS: ---
+		OUTPUT: ---
+	*/
+	void FireBulletEnemy(EnemyTank*);
 #pragma region Application Controls
 	/*
 	USAGE: Manage constant keyboard state

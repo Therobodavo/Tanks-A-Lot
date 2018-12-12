@@ -20,6 +20,20 @@ namespace Simplex
 
 		Player* player;
 		int type;
+
+		// -- Bulletinfo --
+		//Current Timer
+		float aireloadtimer;
+		//AverageReloadSpeed
+		const int aireloadtimeraverage = 20;
+		//ReloadVariationAmount
+		const int aireloadtimervariation = 5;
+
+		// --- Locked on check ---
+		bool horizontalLockedOn = false;
+		bool verticalLockedOn = false;
+		// -----------------------
+		// -- EndBulletinfo ==
 	public:
 		EnemyTank(Player* play);
 		~EnemyTank();
@@ -56,6 +70,8 @@ namespace Simplex
 		void aiMovement(void);
 		void aiAim(void);
 
+		//Bulletinfo
+		bool aiReloadStatus(float);
 	};
 }
 

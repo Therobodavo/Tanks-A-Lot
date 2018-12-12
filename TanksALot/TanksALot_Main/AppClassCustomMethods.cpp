@@ -14,3 +14,36 @@ void Application::DeleteBullet(Bullet bullet)
 	//Remove Bullet from Tracker
 	BulletTracker.erase(BulletTracker.begin() + index);
 }
+
+void Application::FireBulletPlayer()
+{
+	if (ReloadTimer <= 0)
+	{
+		//Prep ID
+		std::string id = "Bullet" + std::to_string(BulletNextID);
+		//Create Bullet at Turret
+		Bullet newPBullet = Bullet(player->getModelTop(), id);
+		//Update IDTracker
+		BulletNextID++;
+		//Add Bullet to BulletTracker
+		BulletTracker.push_back(newPBullet);
+		//Add Bullet to EntityManager
+		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", newPBullet.ID);
+		//ResetReloadTimer
+		ReloadTimer = ReloadTimerMax;
+	}
+}
+void Application::FireBulletEnemy(EnemyTank* Source)
+{
+	//Prep ID
+	std::string id = "Bullet" + std::to_string(BulletNextID);
+	//Create Bullet at Turret
+	Bullet newBullet = Bullet(Source->getModelTop(), id);
+	//Update IDTracker
+	BulletNextID++;
+	//Add Bullet to BulletTracker
+	BulletTracker.push_back(newBullet);
+	//Add Bullet to EntityManager
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", newBullet.ID);
+}
+

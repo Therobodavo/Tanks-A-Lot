@@ -15,6 +15,10 @@ EnemyTank::EnemyTank(Player* play)
 	float z = rand() % 500;
 	type = rand() % 10 + 1;
 	model = glm::translate(vector3(x, 0.2f, z));
+
+	//Bulletinfo
+	//Set reloadtimer to: (airreloadAverage [- variation(since lack of negative random)]) + Random number between 0 and 2*Variation + 1[due to 0];
+	aireloadtimer = (aireloadtimeraverage - aireloadtimervariation) + rand() % ((aireloadtimervariation * 2) + 1);
 }
 
 
@@ -247,23 +251,59 @@ void Simplex::EnemyTank::aiAim(void)
 	vector3 right = glm::translate(cannon, vector3(0, -0, -0.5f)) * Position;
 
 	vector3 targetPos = player->getModelHead() * Position;
+	// --- Locked on reset ---
+	horizontalLockedOn = false;
+	verticalLockedOn = false;
+	// -----------------------
+
 
 	float dL = glm::distance(targetPos, left);
 	float dR = glm::distance(targetPos, right);
 
 	if (dL > dR)
 		aimLeft();
-	if (dL < dR)
+	else if (dL < dR)
 		aimRight();
+	else
+		horizontalLockedOn = true;
 
 	float dFoward = glm::distance(targetPos, front);
 	dFoward = dFoward / 5;
 	dFoward -= 2;
 
-	if (dFoward > rotationTopUp + 2.f)
+	if (dFoward > rotationTopUp + 1.f) //Old: 2.f
 		aimUp();
-	else if (dFoward < rotationTopUp - 2.f)
+	else if (dFoward < rotationTopUp - 1.f) //Old: 2.f
 		aimDown();
+	else //If Vertical Aim is good
+		verticalLockedOn = true;
+
+	// --- Locked on check ---
+	//Check 1:  Distance Left is smaller than Distance Right (+ margin), AND Check 2: Distance right is smaller than Distance Left (+ margin)
+	if(dL < (dR + .1f) && dR < (dL + .1f) )
+	horizontalLockedOn = true;
+
+	//verticalLockedOn = false;
+	// -----------------------
+}
+
+//Bullet Methods
+bool Simplex::EnemyTank::aiReloadStatus(float deltatime)
+{
+	//Update timer
+	aireloadtimer -= deltatime;
+	//Ready to fire?  Reload timer at 0 AND locked up horizontally and Vertically
+	if (aireloadtimer <= 0 && horizontalLockedOn == true && verticalLockedOn == true)
+	//If Yes ...
+	{
+		//Reset timer
+		aireloadtimer = (aireloadtimeraverage - aireloadtimervariation) + rand() % ((aireloadtimervariation * 2) + 1);
+		//Return true
+		return true;
+	}
+	//Otherwise ...
+	//return false
+	return false;
 }
 
 
