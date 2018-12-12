@@ -17,6 +17,9 @@ namespace Simplex
 		std::string ID;
 		//Bullet Life
 		float BulletLife;
+		float accl;
+		float accl2;
+		float spd;
 
 	//Methods
 

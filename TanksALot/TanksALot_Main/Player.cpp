@@ -10,12 +10,13 @@ Player::Player()
 	//setting variables
 	rotationTop = 0;
 	rotationTopUp = 0;
-	rotationBase = 0;
-	rotationBase2 = 0;
+
 	rotationCam = 0;
-	model = glm::translate(vector3(0, 1, 0));
+	rotationCam2 = 0;
+	model = glm::translate(vector3(300, 0.2f, 300));
 
-
+	//rotationBase = 0;
+	//rotationBase2 = 0;
 }
 
 
@@ -33,8 +34,14 @@ vector3 Simplex::Player::getCamPos(void)
 	//get the matrix position of model
 	matrix4 top2 = glm::rotate(model, glm::radians(rotationCam), vector3(0.0f, 1.0f, 0.0f));
 	//top2 = glm::rotate(top2, glm::radians(rotationBase2), vector3(0.0f, 1.0f, 0.0f));
-	matrix4 mPos = glm::translate(top2, vector3(-16, 7.5, 0.f));
+	//matrix4 mPos = glm::translate(top2, vector3(-10, 5, 0.f));
+	matrix4 mPos = glm::translate(top2, vector3(-14, 6, 0.f));
 
+	float distanceFix = glm::abs(rotationCam) * 0.05f;
+	if (rotationCam > 0)
+		distanceFix -= 0.5f;
+
+	 mPos = glm::translate(mPos, vector3(distanceFix, 0, 0));
 	//convert matrix to vec4
 	glm::vec4 Transformed = mPos * Position;
 	camPos = Transformed;
@@ -44,23 +51,24 @@ vector3 Simplex::Player::getCamPos(void)
 
 vector3 Simplex::Player::getTargetPos(void)
 {
-	//create a vec4 position
+
 	glm::vec4 Position = glm::vec4(glm::vec3(0.0f), 1.0f);
 	//get the matrix position of model
 	matrix4 top2 = glm::rotate(model, glm::radians(rotationCam), vector3(0.0f, 1.0f, 0.0f));
 	//top2 = glm::rotate(top2, glm::radians(rotationBase2), vector3(0.0f, 1.0f, 0.0f));
-	matrix4 mPos = glm::translate(top2, vector3(0, 5, 1.f));
+	//matrix4 mPos = glm::translate(top2, vector3(-10, 5, 0.f));
+	matrix4 mPos = glm::translate(top2, vector3(-14, 6, 0.f));
 
-	//convert matrix to vec4
+	float distanceFix = glm::abs(rotationCam) * 0.05f;
+	if (rotationCam > 0)
+		distanceFix -= 0.5f;
+
+	mPos = glm::translate(mPos, vector3(distanceFix, 0, 0));
+
+	mPos = glm::translate(mPos, vector3(20, rotationCam2, 0));
+
 	glm::vec4 Transformed = mPos * Position;
 	targetPos = Transformed;
-
-	//create rotation quaternion based off of baseRotation
-	quaternion rot = glm::angleAxis(glm::radians(rotationBase), vector3(0.0f, 1.0f, 0.0f));
-	//calculate distance
-	vector3 distance = (targetPos - camPos);
-	//add camera position by the distance rotated
-	targetPos = camPos + (distance * rot);
 
 
 	return targetPos;
@@ -89,16 +97,6 @@ matrix4 Simplex::Player::getModelTop(void)
 matrix4 Simplex::Player::getModelHead(void)
 {
 	matrix4 head = glm::scale(model, vector3(2.f, 2.0f, 2.f));
-	//head = glm::rotate(head, glm::radians(rotationBase2), vector3(0.0f, 1.0f, 0.0f));
-	//float rot = glm::abs(rotationBase2 * 0.005f);
-	//if (rot >= 1) {
-	//	rot -= round(rot);
-	
-//	if (rot > 1.0)
-	//	rot = 0;
-	//rot = 0;
-	//cout << rot << endl;
-	//return glm::translate(head, vector3(rot, 0.0f, 0));
 	return head;
 }
 
@@ -124,44 +122,68 @@ void Simplex::Player::moveBack(float move)
 void Simplex::Player::rotateLeft(void)
 {
    model = glm::rotate(model, glm::radians(0.5f), vector3(0.0f, 1.0f, 0.0f));
-	rotationBase += -0.01f;
-	rotationBase2 += -0.5f;
+	//rotationBase += -0.01f;
+	//rotationBase2 += -0.5f;
 }
 
 void Simplex::Player::rotateRight(void)
 {
 	model = glm::rotate(model, glm::radians(-0.5f), vector3(0.0f, 1.0f, 0.0f));
-	rotationBase += 0.01f;
-	rotationBase2 += 0.5f;
+	//rotationBase += 0.01f;
+	//rotationBase2 += 0.5f;
 
 }
 
 void Simplex::Player::aimRight(void)
 {
-	if (rotationTop > -80) {
-		rotationTop -= 0.5f;
-		rotationCam -= 0.5f;
+	
+	if (rotationTop > -90 && rotationTop < 90) {
+		rotationCam -= 0.8f;
+	}
+	if (rotationTop > -93) {
+		rotationTop -= 0.8f;
 	}
 	
+	/*
+	if (rotationTop > -90) {
+		rotationTop -= 0.8f;
+		rotationCam -= 0.8f;
+	}
+	*/
 }
 
 void Simplex::Player::aimLeft(void)
 {
-	if (rotationTop < 80) {
-		rotationTop += 0.5f;
-		rotationCam += 0.5f;
+
+	if (rotationTop < 90 && rotationTop > -90) {
+		rotationCam += 0.8f;
    }
-	
+	if (rotationTop < 93) {
+		rotationTop += 0.8f;
+	}
+
+	/*
+	if (rotationTop < 90) {
+		rotationTop += 0.8f;
+		rotationCam += 0.8f;
+	}
+	*/
 }
 void Simplex::Player::aimUp(void)
 {
-	if (rotationTopUp < 30)
-	rotationTopUp += 0.5f;
+	if (rotationTopUp < 30) {
+		rotationTopUp += 0.8f;
+		rotationCam2 += 0.08f;
+	}
+
 }
 void Simplex::Player::aimDown(void)
 {
-	if (rotationTopUp > 0)
-	rotationTopUp -= 0.5f;
+	if (rotationTopUp > 0) {
+		rotationTopUp -= 0.8f;
+		rotationCam2 -= 0.08f;
+	}
+
 }
 void Simplex::Player::camLeft(void)
 {

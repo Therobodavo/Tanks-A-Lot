@@ -1,11 +1,15 @@
 #include "AppClass.h"
+#include <iostream>
 using namespace Simplex;
+using namespace std;
 void Application::InitVariables(void)
 {
 	//Set the position and target of the camera
 	m_pCameraMngr->SetPositionTargetAndUp(vector3(-0.0f, 3, 0), vector3(1.0f, 3, 0), AXIS_Y);		//Up
 
+
 	player = new Player();
+	
 	
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
@@ -13,9 +17,20 @@ void Application::InitVariables(void)
 	m_pEntityMngr->AddEntity("Minecraft\\ModelTT.obj", "PlayerTop");
 	m_pEntityMngr->AddEntity("Minecraft\\ModelTH.obj", "PlayerHead");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
-
-	m_pEntityMngr->GetEntity(3)->SetModelMatrix(glm::scale(vector3(50, 1, 50)));
 	
+
+
+	m_pEntityMngr->GetEntity(3)->SetModelMatrix(glm::scale(vector3(1000, 1, 1000)));
+	
+	//need to do this properway
+	for (size_t i = 0; i < 20; i++)
+	{
+		m_pEntityMngr->AddEntity("Minecraft\\ModelTB.obj", "PlayerBase");
+		m_pEntityMngr->AddEntity("Minecraft\\ModelTT.obj", "PlayerTop");
+		m_pEntityMngr->AddEntity("Minecraft\\ModelTH.obj", "PlayerHead");
+		eniTanks.push_back(new EnemyTank(player));
+	
+	}
 	
 	//m_pEntityMngr->Update();
 }
@@ -35,7 +50,22 @@ void Application::Update(void)
 	m_pEntityMngr->GetEntity(1)->SetModelMatrix(player->getModelTop()); // creating top part of tank
 	m_pEntityMngr->GetEntity(2)->SetModelMatrix(player->getModelHead()); // creating top part of tank
 
+	
+	int check = 4;
+	//testing
+	for each (EnemyTank* eni in eniTanks)
+	{
+		m_pEntityMngr->GetEntity(check)->SetModelMatrix(eni->getModelBase()); //putting model in entity
+		m_pEntityMngr->GetEntity(check + 1)->SetModelMatrix(eni->getModelTop()); // creating top part of tank
+		m_pEntityMngr->GetEntity(check + 2)->SetModelMatrix(eni->getModelHead()); // creating top part of tank
+		eni->aiMovement();
+		check += 3;
+	}
+
+
 	m_pCameraMngr->SetPositionTargetAndUp(player->getCamPos(), player->getTargetPos(), AXIS_Y); //setting the cordinates for the camera
+
+
 
 
 	//Bullet Code
@@ -95,4 +125,9 @@ void Application::Release(void)
 {
 	//release GUI
 	ShutdownGUI();
+	for each (EnemyTank* eni in eniTanks)
+	{
+		SafeDelete(eni);
+	}
+	SafeDelete(player);
 }

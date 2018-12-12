@@ -13,6 +13,7 @@ Date: 2017/06
 #include "Bullet.h"
 #include "MyEntityManager.h"
 #include "OcTree.h"
+#include "EnemyTank.h"
 namespace Simplex
 {
 	//Adding Application to the Simplex namespace
@@ -55,13 +56,15 @@ private:
 	MeshManager* m_pMeshMngr = nullptr; //Mesh Manager
 	CameraManager* m_pCameraMngr = nullptr; //Singleton for the camera manager
 	
-	
+	std::vector<EnemyTank*> eniTanks;
 	Player* player = nullptr;
+
 
 	//DeltaTime
 	float ftimer = 0;
 	//ReloadTimerMax
-	float ReloadTimerMax = 5;
+	//5
+	float ReloadTimerMax = 1.5f;
 	//CurrentReloadTimer;
 	float ReloadTimer = 0;	//store the new timer
 	
