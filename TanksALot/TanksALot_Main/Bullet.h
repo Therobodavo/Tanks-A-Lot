@@ -15,8 +15,17 @@ namespace Simplex
 		matrix4 model;
 		//Bullet ID
 		std::string ID;
+		//Bullet Source
+
 		//Bullet Life
 		float BulletLife;
+
+
+		float accl;
+		float accl2;
+		float spd;
+	private:
+
 
 	//Methods
 

@@ -13,6 +13,7 @@ Date: 2017/06
 #include "Bullet.h"
 #include "MyEntityManager.h"
 #include "OcTree.h"
+#include "EnemyTank.h"
 namespace Simplex
 {
 	//Adding Application to the Simplex namespace
@@ -55,13 +56,15 @@ private:
 	MeshManager* m_pMeshMngr = nullptr; //Mesh Manager
 	CameraManager* m_pCameraMngr = nullptr; //Singleton for the camera manager
 	
-	
+	std::vector<EnemyTank*> eniTanks;
 	Player* player = nullptr;
+
 
 	//DeltaTime
 	float ftimer = 0;
 	//ReloadTimerMax
-	float ReloadTimerMax = 5;
+	//5
+	float ReloadTimerMax = 1.5f;
 	//CurrentReloadTimer;
 	float ReloadTimer = 0;	//store the new timer
 	
@@ -196,8 +199,20 @@ private:
 		USAGE: Deletes Bullet Obj
 		ARGUMENTS: Bullet obj
 		OUTPUT: ---
-		*/
+	*/
 	void DeleteBullet(Bullet bullet);
+	/*
+		USAGE: Create Bullet from player
+		ARGUMENTS: ---
+		OUTPUT: ---
+	*/
+	void FireBulletPlayer();
+	/*
+		USAGE: Create Bullet from Enemy
+		ARGUMENTS: ---
+		OUTPUT: ---
+	*/
+	void FireBulletEnemy(EnemyTank*);
 #pragma region Application Controls
 	/*
 	USAGE: Manage constant keyboard state

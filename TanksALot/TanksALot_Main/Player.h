@@ -15,6 +15,7 @@ namespace Simplex
 		float rotationTopUp;
 
 		float rotationCam;
+	
 
 		//vector position of the camera
 		vector3 camPos;
@@ -27,7 +28,7 @@ namespace Simplex
 	public:
 		Player();
 		~Player();
-
+		float rotationCam2;
 		//method returning camPos
 		vector3 getCamPos(void);
 		//method returning targetPos
