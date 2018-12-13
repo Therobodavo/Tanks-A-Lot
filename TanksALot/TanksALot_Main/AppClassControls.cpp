@@ -22,11 +22,11 @@ void Application::ProcessMousePressed(sf::Event a_event)
 		break;
 	case sf::Mouse::Button::Middle:
 		gui.m_bMousePressed[1] = true;
-		m_bArcBall = true;
+		
 		break;
 	case sf::Mouse::Button::Right:
 		gui.m_bMousePressed[2] = true;
-		m_bFPC = true;
+		
 		break;
 	}
 
@@ -43,11 +43,11 @@ void Application::ProcessMouseReleased(sf::Event a_event)
 		break;
 	case sf::Mouse::Button::Middle:
 		gui.m_bMousePressed[1] = false;
-		m_bArcBall = false;
+		
 		break;
 	case sf::Mouse::Button::Right:
 		gui.m_bMousePressed[2] = false;
-		m_bFPC = false;
+		
 		break;
 	}
 
@@ -60,10 +60,6 @@ void Application::ProcessMouseScroll(sf::Event a_event)
 	float fSpeed = a_event.mouseWheelScroll.delta;
 	float fMultiplier = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::RShift);
-
-	if (fMultiplier)
-		fSpeed *= 2.0f;
-	//m_pCameraMngr->MoveForward(-fSpeed);
 }
 //Keyboard
 void Application::ProcessKeyPressed(sf::Event a_event)
@@ -76,7 +72,7 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 		break;
 	case sf::Keyboard::LShift:
 	case sf::Keyboard::RShift:
-		m_bModifier = true;
+		
 		break;
 	}
 	
@@ -93,55 +89,37 @@ void Application::ProcessKeyReleased(sf::Event a_event)
 	{
 	default: break;
 	case sf::Keyboard::Escape:
-		m_bRunning = false;
+		
 		break;
 	case sf::Keyboard::F1:
-		m_pCameraMngr->SetCameraMode(CAM_PERSP);
+		
 		break;
 	case sf::Keyboard::F2:
-		m_pCameraMngr->SetCameraMode(CAM_ORTHO_Z);
+		
 		break;
 	case sf::Keyboard::F3:
-		m_pCameraMngr->SetCameraMode(CAM_ORTHO_Y);
+		
 		break;
 	case sf::Keyboard::F4:
-		m_pCameraMngr->SetCameraMode(CAM_ORTHO_X);
+		
 		break;
 	case sf::Keyboard::F:
-		bFPSControl = !bFPSControl;
-		m_pCameraMngr->SetFPS(bFPSControl);
+		
 		break;
-		//Enable visual for OcTree
+		
 	case sf::Keyboard::PageUp:
-		showOcTree = true;
+		
 		break;
-		//Disable visual for OcTree
+		
 	case sf::Keyboard::PageDown:
-		showOcTree = false;
+		
 		break;
-		//Raise OcTree level
+		
 	case sf::Keyboard::Add:
-		if (m_uOctantLevels < 6)
-		{
-			m_pEntityMngr->ClearDimensionSetAll();
-			++m_uOctantLevels;
-			
-			SafeDelete(m_pRoot);
-			m_pRoot = new OcTree(m_uOctantLevels);
-			
-		}
+
 		break;
-		//Lower OcTree level
+
 	case sf::Keyboard::Subtract:
-		if (m_uOctantLevels > 0)
-		{
-			m_pEntityMngr->ClearDimensionSetAll();
-			--m_uOctantLevels;
-			
-			SafeDelete(m_pRoot);
-			m_pRoot = new OcTree(m_uOctantLevels);
-			
-		}
 		break;
 	case sf::Keyboard::LShift:
 	case sf::Keyboard::RShift:
@@ -346,9 +324,6 @@ void Application::ArcBall(float a_fSensitivity)
 		DeltaMouse = static_cast<float>(MouseY - CenterY);
 		m_qArcBall = quaternion(vector3(glm::radians(a_fSensitivity * DeltaMouse), 0.0f, 0.0f)) * m_qArcBall;
 	}
-
-	SetCursorPos(CenterX, CenterY);//Position the mouse in the center
-								   //return qArcBall; // return the new quaternion orientation
 }
 void Application::CameraRotation(float a_fSpeed)
 {
@@ -393,12 +368,6 @@ void Application::CameraRotation(float a_fSpeed)
 		fDeltaMouse = static_cast<float>(MouseY - CenterY);
 		fAngleX += fDeltaMouse * a_fSpeed;
 	}
-
-
-	//Change the Yaw and the Pitch of the camera
-	m_pCameraMngr->ChangeYaw(fAngleY * 0.25f);
-	//m_pCameraMngr->ChangePitch(-fAngleX * 0.25f);
-	SetCursorPos(CenterX, CenterY);//Position the mouse in the center
 }
 //Keyboard
 void Application::ProcessKeyboard(void)
@@ -475,24 +444,6 @@ void Application::ProcessKeyboard(void)
 		}
 		
 	}
-	/*
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		m_pCameraMngr->MoveForward(-m_fMovementSpeed * fMultiplier);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		m_pCameraMngr->MoveSideways(-m_fMovementSpeed * fMultiplier);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		m_pCameraMngr->MoveSideways(m_fMovementSpeed * fMultiplier);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		m_pCameraMngr->MoveVertical(-m_fMovementSpeed * fMultiplier);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		m_pCameraMngr->MoveVertical(m_fMovementSpeed * fMultiplier);
-		*/
 		
 #pragma endregion
 }

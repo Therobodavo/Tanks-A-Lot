@@ -9,17 +9,22 @@ void Application::DrawGUI(void)
 	for (uint i = 0; i < nEmptyLines; ++i)
 		m_pMeshMngr->PrintLine("");//Add a line on top
 	//m_pMeshMngr->Print("						");
-	m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), C_YELLOW);
+	//m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), C_YELLOW);
 	//m_pMeshMngr->Print("						");
 
 	//m_pMeshMngr->Print("						");
-	m_pMeshMngr->Print("RenderCalls: ");//Add a line on top
-	m_pMeshMngr->PrintLine(std::to_string(m_uRenderCallCount), C_YELLOW);
+	//m_pMeshMngr->Print("RenderCalls: ");//Add a line on top
+	//m_pMeshMngr->PrintLine(std::to_string(m_uRenderCallCount), C_YELLOW);
 
 	//m_pMeshMngr->Print("						");
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->PrintLine(std::to_string(m_pSystem->GetFPS()), C_RED);
 
+	Simplex::String reloadMessage = "Reload Timer: ";
+	reloadMessage += (int)std::roundf(ReloadTimer);
+	reloadMessage += " / ";
+	reloadMessage += (int)ReloadTimerMax;
+	m_pMeshMngr->PrintLine(reloadMessage);
 
 	
 #pragma endregion
@@ -37,31 +42,20 @@ void Application::DrawGUI(void)
 		String sAbout = m_pSystem->GetAppName() + " - About";
 		ImGui::Begin(sAbout.c_str(), (bool*)0, window_flags);
 		{
-			ImGui::Text("Programmer: \n");
-			ImGui::TextColored(v4Color, m_sProgrammer.c_str());
-			ImGui::Text("FrameRate: %.2f [FPS] -> %.3f [ms/frame]\n",
-				ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
-			ImGui::Text("Levels in Octree: %d\n", m_uOctantLevels);
+			//ImGui::Text("Programmer: \n");
+			//ImGui::TextColored(v4Color, m_sProgrammer.c_str());
+			//ImGui::Text("FrameRate: %.2f [FPS] -> %.3f [ms/frame]\n",
+				//ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
+			//ImGui::Text("Levels in Octree: %d\n", m_uOctantLevels);
 			//ImGui::Text("Octants: %d\n", m_pRoot->GetOctantCount());
-			ImGui::Text("Objects: %d\n", m_uObjects);
+			//ImGui::Text("Objects: %d\n", m_uObjects);
 			ImGui::Separator();
 			ImGui::Text("Tank Stats: \n");
 			ImGui::Text("Reload Timer: %d / %d \n", (int)std::roundf(ReloadTimer), (int)ReloadTimerMax);
 			ImGui::Separator();
 			ImGui::Text("Control:\n");
 			ImGui::Text("   WASD: Movement\n");
-			ImGui::Text("	 F1: Perspective\n");
-			ImGui::Text("	 F2: Orthographic X\n");
-			ImGui::Text("	 F3: Orthographic Y\n");
-			ImGui::Text("	 F4: Orthographic Z\n");
 			ImGui::Separator();
-			ImGui::Text(" PageUp: Enable Octant display\n");
-			ImGui::Text(" PageDw: Disable Octant display\n");
-			ImGui::Separator();
-			ImGui::Text("	  -: Increment Octree subdivision\n");
-			ImGui::Text("	  +: Decrement Octree subdivision\n");
-			ImGui::Separator();
-			ImGui::TextColored(ImColor(255, 255, 0), "Octree\n");
 		}
 		ImGui::End();
 	}
