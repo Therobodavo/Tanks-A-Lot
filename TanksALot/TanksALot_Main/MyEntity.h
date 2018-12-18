@@ -15,7 +15,7 @@ class MyEntity
 {
 	bool m_bInMemory = false; //loaded flag
 	bool m_bSetAxis = false; //render axis flag
-	String m_sUniqueID = ""; //Unique identifier name
+	
 
 	uint m_nDimensionCount = 0; //tells how many dimensions this entity lives in
 	uint* m_DimensionArray = nullptr; //Dimensions on which this entity is located
@@ -29,6 +29,7 @@ class MyEntity
 	static std::map<String, MyEntity*> m_IDMap; //a map of the unique ID's
 
 public:
+	String m_sUniqueID = ""; //Unique identifier name
 	/*
 	Usage: Constructor that specifies the name attached to the MyEntity
 	Arguments:

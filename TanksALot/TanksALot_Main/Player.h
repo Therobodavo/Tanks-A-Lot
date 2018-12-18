@@ -29,6 +29,7 @@ namespace Simplex
 		Player();
 		~Player();
 		float rotationCam2;
+		matrix4 lastMoveMat;
 		//method returning camPos
 		vector3 getCamPos(void);
 		//method returning targetPos

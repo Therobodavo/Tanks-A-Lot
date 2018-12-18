@@ -297,7 +297,7 @@ bool MyRigidBody::IsColliding(MyRigidBody* const a_pOther)
 	bool bColliding = true;
 	//bColliding = (glm::distance(GetCenterGlobal(), other->GetCenterGlobal()) < m_fRadius + other->m_fRadius);
 	//if they are check the Axis Aligned Bounding Box
-	if (bColliding) //they are colliding with bounding sphere
+	if (bColliding && a_pOther != this) //they are colliding with bounding sphere
 	{
 		if (this->m_v3MaxG.x < a_pOther->m_v3MinG.x) //this to the right of other
 			bColliding = false;

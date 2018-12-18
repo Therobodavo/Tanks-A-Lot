@@ -108,20 +108,22 @@ void Simplex::Player::moveFoward(float move)
 {
 
 	model = glm::translate(model, vector3(move, 0, 0));
-
+	lastMoveMat = glm::translate(IDENTITY_M4, vector3(move, 0, 0));
 
 }
 
 void Simplex::Player::moveBack(float move)
 {
 	model = glm::translate(model, vector3(move, 0, 0));
-	glm::translate(model, vector3(move, 0, 0));
+	//glm::translate(model, vector3(move, 0, 0));
+	lastMoveMat = glm::translate(IDENTITY_M4, vector3(move, 0, 0));
 
 }
 
 void Simplex::Player::rotateLeft(void)
 {
    model = glm::rotate(model, glm::radians(0.5f), vector3(0.0f, 1.0f, 0.0f));
+   lastMoveMat = glm::rotate(IDENTITY_M4, glm::radians(0.5f), vector3(0.0f, 1.0f, 0.0f));
 	//rotationBase += -0.01f;
 	//rotationBase2 += -0.5f;
 }
@@ -129,6 +131,7 @@ void Simplex::Player::rotateLeft(void)
 void Simplex::Player::rotateRight(void)
 {
 	model = glm::rotate(model, glm::radians(-0.5f), vector3(0.0f, 1.0f, 0.0f));
+	lastMoveMat = glm::rotate(IDENTITY_M4, glm::radians(-0.5f), vector3(0.0f, 1.0f, 0.0f));
 	//rotationBase += 0.01f;
 	//rotationBase2 += 0.5f;
 

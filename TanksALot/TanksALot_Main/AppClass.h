@@ -68,8 +68,7 @@ private:
 	//CurrentReloadTimer;
 	float ReloadTimer = 0;	//store the new timer
 	
-	//BulletTracker Vector<Bullet>
-	std::vector<Bullet> BulletTracker;
+	
 	//Bullet ID Tracker
 	int BulletNextID = 0;
 
@@ -81,6 +80,9 @@ private:
 	sf::Music m_soundBGM; //background music
 
 public:
+	bool showOc;
+	int score;
+	bool isAlive = true;
 #pragma region Constructor / Run / Destructor
 	/*
 	USAGE: Constructor
@@ -97,6 +99,11 @@ public:
 	-	bool a_bBorderless = false -> is the window borderless?
 	OUTPUT: ---
 	*/
+	int numEnemies = 0;
+	//BulletTracker Vector<Bullet>
+	std::vector<Bullet> BulletTracker;
+	void UpdateCollision();
+	void AddToDelete(String s);
 	void Init(String a_sApplicationName = "", int a_uSize = BTO_RESOLUTIONS::RES_C_1280x720_16x9_HD,
 		bool a_bFullscreen = false, bool a_bBorderless = false);
 	/*

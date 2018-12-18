@@ -8,23 +8,13 @@ void Application::DrawGUI(void)
 	uint nEmptyLines = 20;
 	for (uint i = 0; i < nEmptyLines; ++i)
 		m_pMeshMngr->PrintLine("");//Add a line on top
-	//m_pMeshMngr->Print("						");
-	//m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), C_YELLOW);
-	//m_pMeshMngr->Print("						");
-
-	//m_pMeshMngr->Print("						");
-	//m_pMeshMngr->Print("RenderCalls: ");//Add a line on top
-	//m_pMeshMngr->PrintLine(std::to_string(m_uRenderCallCount), C_YELLOW);
-
-	//m_pMeshMngr->Print("						");
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->PrintLine(std::to_string(m_pSystem->GetFPS()), C_RED);
 
-	Simplex::String reloadMessage = "Reload Timer: ";
-	reloadMessage += (int)std::roundf(ReloadTimer);
-	reloadMessage += " / ";
-	reloadMessage += (int)ReloadTimerMax;
-	m_pMeshMngr->PrintLine(reloadMessage);
+	if (!isAlive)
+	{
+		m_pMeshMngr->PrintLine("YOU ARE DEAD! GAME OVER!", C_BLACK);
+	}
 
 	
 #pragma endregion
@@ -51,11 +41,14 @@ void Application::DrawGUI(void)
 			//ImGui::Text("Objects: %d\n", m_uObjects);
 			ImGui::Separator();
 			ImGui::Text("Tank Stats: \n");
-			ImGui::Text("Reload Timer: %d / %d \n", (int)std::roundf(ReloadTimer), (int)ReloadTimerMax);
+			//ImGui::Text("Reload Timer: %d / %d \n", (int)std::roundf(ReloadTimer), (int)ReloadTimerMax);
 			ImGui::Separator();
 			ImGui::Text("Control:\n");
 			ImGui::Text("   WASD: Movement\n");
+			ImGui::Text("   Shift + Move: Sprint\n");
+			ImGui::Text("   P: Toggle OcTree Display\n");
 			ImGui::Separator();
+			ImGui::Text("   Score: %d",score);
 		}
 		ImGui::End();
 	}

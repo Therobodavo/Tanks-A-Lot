@@ -16,18 +16,14 @@ namespace Simplex
 		//Bullet ID
 		std::string ID;
 		//Bullet Source
-
+		String source;
 		//Bullet Life
 		float BulletLife;
 
-
+		int bulletTeam;
 		float accl;
 		float accl2;
 		float spd;
-	private:
-
-
-	//Methods
 
 		//Move Model forward by 'Speed'.
 		matrix4 Move(float speed);
@@ -38,6 +34,13 @@ namespace Simplex
 		Output: bool
 		*/
 		bool operator==(Bullet const& other) const;
+
+	private:
+
+
+	//Methods
+
+
 		
 	};
 }

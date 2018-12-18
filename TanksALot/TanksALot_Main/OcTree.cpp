@@ -11,7 +11,7 @@ OcTree::OcTree(int maxBranches)
 {
 	//Set default values
 	index = 0;
-	size = 40;
+	size = 1000;
 	int branch = 0;
 	vector3 center = vector3(0, 0, 0);
 

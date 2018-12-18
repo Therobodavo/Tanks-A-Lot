@@ -71,6 +71,10 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 		m_sound.play();
 		break;
 	case sf::Keyboard::LShift:
+		break;
+	case sf::Keyboard::P:
+		showOc = !showOc;
+		break;
 	case sf::Keyboard::RShift:
 		
 		break;
@@ -372,7 +376,7 @@ void Application::CameraRotation(float a_fSpeed)
 //Keyboard
 void Application::ProcessKeyboard(void)
 {
-	if (!m_bFocused)
+	if (!m_bFocused || !isAlive)
 		return;
 	/*
 	This is used for things that are continuously happening,

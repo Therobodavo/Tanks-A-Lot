@@ -167,6 +167,9 @@ Simplex::MyEntityManager::~MyEntityManager(){Release();};
 // other methods
 void Simplex::MyEntityManager::Update(void)
 {
+	
+	destroyList.clear();
+	
 	//Clear all collisions
 	for (uint i = 0; i < m_uEntityCount; i++)
 	{
@@ -174,19 +177,137 @@ void Simplex::MyEntityManager::Update(void)
 	}
 
 	//check collisions
-	for (uint i = 0; i < m_uEntityCount - 1; i++)
+	for (uint i = 0; i < m_uEntityCount; i++)
 	{
-		for (uint j = i + 1; j < m_uEntityCount; j++)
+		for (uint j = 0; j < m_uEntityCount; j++)
 		{
-			m_mEntityArray[i]->IsColliding(m_mEntityArray[j]);
+			bool isCol = m_mEntityArray[i]->IsColliding(m_mEntityArray[j]);
+			if (isCol)
+			{
+				String id = m_mEntityArray[i]->GetUniqueID();
+				std::cout << "ID: " << id << std::endl;
+				String id2 = m_mEntityArray[j]->GetUniqueID();
+				
+				if (id.find("Bullet"))
+				{
+					if (id2.find("Player"))//AND bullet.shooter != Player
+					{
+						//Hurt Player
+						//Destroy Bullet
+						destroyList.push_back(id);
+					}
+					else if (id2.find("Enemy"))//AND bullet.shooter != Enemy
+					{
+						//Hurt Enemy
+						//Destroy
+						destroyList.push_back(id);
+					}
+					else if (id2.find("Wall"))
+					{
+						//Destroy Bullet
+						destroyList.push_back(id);
+					}
+					else if (id2.find("Bullet"))
+					{
+						//Destroy both bullets
+						destroyList.push_back(id);
+						destroyList.push_back(id2);
+					}
+				}
+				else if (id.find("Enemy"))
+				{
+					if (id2.find("Player"))//AND bullet.shooter != Player
+					{
+						//Hurt Player
+						//Destroy Enemy
+						destroyList.push_back(id);
+
+						if (id[5] == 'A')
+						{
+							destroyList.push_back(m_mEntityArray[i + 1]->GetUniqueID());
+							destroyList.push_back(m_mEntityArray[i + 2]->GetUniqueID());
+						}
+						else if(id[5] == 'B')
+						{
+							destroyList.push_back(m_mEntityArray[i - 1]->GetUniqueID());
+							destroyList.push_back(m_mEntityArray[i + 1]->GetUniqueID());
+						}
+					}
+					else if (id2.find("Enemy"))//AND bullet.shooter != Enemy
+					{
+						//Hurt both Enemies
+						destroyList.push_back(id);
+						destroyList.push_back(id2);
+						if (id[5] == 'A')
+						{
+							destroyList.push_back(m_mEntityArray[i + 1]->GetUniqueID());
+							destroyList.push_back(m_mEntityArray[i + 2]->GetUniqueID());
+						}
+						else if(id[5] == 'B')
+						{
+							destroyList.push_back(m_mEntityArray[i - 1]->GetUniqueID());
+							destroyList.push_back(m_mEntityArray[i + 1]->GetUniqueID());
+						}
+
+						if (id2[5] == 'A')
+						{
+							destroyList.push_back(m_mEntityArray[j + 1]->GetUniqueID());
+							destroyList.push_back(m_mEntityArray[j + 2]->GetUniqueID());
+						}
+						else if(id2[5] == 'B')
+						{
+							destroyList.push_back(m_mEntityArray[j - 1]->GetUniqueID());
+							destroyList.push_back(m_mEntityArray[j + 1]->GetUniqueID());
+						}
+					}
+					else if (id2.find("Wall"))
+					{
+						//move back/ obstacle avoidance?
+					}
+				}
+				else if (id.find("Player"))
+				{
+					if (id2.find("Wall"))
+					{
+						//move back/out of collision
+					}
+				}
+				
+			}
+		
 		}
 	}
+
+	//for (int i = 0; i < destroyList.size(); i++) 
+	//{
+	//	std::cout << destroyList[i] << std::endl;
+	//}
+	
+	
+	//std::cout << "HULP BEFORE: " << destroyList.size() << std::endl;
+	for (int i = destroyList.size() - 1; i >= 0; i--)
+	{
+
+		for (int j = destroyList.size() - 1; j >= 0; j--)
+		{
+			String name1 = destroyList[destroyList.size() - 1];
+			String name2 = destroyList[destroyList.size() - 1];
+
+			if (name1 == name2 && i != j)
+			{
+				destroyList.erase(destroyList.begin() + j);
+			}
+		}
+	}
+	//std::cout << "HULP AFTER: " << destroyList.size() << std::endl;
+	
 }
 void Simplex::MyEntityManager::AddEntity(String a_sFileName, String a_sUniqueID)
 {
 	//Create a temporal entity to store the object
 	MyEntity* pTemp = new MyEntity(a_sFileName, a_sUniqueID);
 	//if I was able to generate it add it to the list
+
 	if (pTemp->IsInitialized())
 	{
 		//create a new temp array with one extra entry

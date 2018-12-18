@@ -6,6 +6,7 @@ Date: 2017/07
 #define __MYENTITYMANAGER_H_
 
 #include "MyEntity.h"
+#include <vector>
 
 namespace Simplex
 {
@@ -18,6 +19,7 @@ class MyEntityManager
 	PEntity* m_mEntityArray = nullptr; //array of MyEntity pointers
 	static MyEntityManager* m_pInstance; // Singleton pointer
 public:
+	std::vector<String> destroyList;
 	/*
 	Usage: Gets the singleton pointer
 	Arguments: ---

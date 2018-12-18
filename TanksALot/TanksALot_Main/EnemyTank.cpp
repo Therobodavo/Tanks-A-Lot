@@ -288,10 +288,10 @@ void Simplex::EnemyTank::aiAim(void)
 }
 
 //Bullet Methods
-bool Simplex::EnemyTank::aiReloadStatus(float deltatime)
+bool Simplex::EnemyTank::aiReloadStatus(float deltatime = .02f)
 {
 	//Update timer
-	aireloadtimer -= deltatime;
+	aireloadtimer -= 0.2f;
 	//Ready to fire?  Reload timer at 0 AND locked up horizontally and Vertically
 	if (aireloadtimer <= 0 && horizontalLockedOn == true && verticalLockedOn == true)
 	//If Yes ...

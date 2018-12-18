@@ -23,6 +23,8 @@ void Application::FireBulletPlayer()
 		std::string id = "Bullet" + std::to_string(BulletNextID);
 		//Create Bullet at Turret
 		Bullet newPBullet = Bullet(player->getModelTop(), id);
+		newPBullet.source = "PlayerA";
+		newPBullet.bulletTeam = 0;
 		//Update IDTracker
 		BulletNextID++;
 		//Add Bullet to BulletTracker
@@ -39,6 +41,8 @@ void Application::FireBulletEnemy(EnemyTank* Source)
 	std::string id = "Bullet" + std::to_string(BulletNextID);
 	//Create Bullet at Turret
 	Bullet newBullet = Bullet(Source->getModelTop(), id);
+	newBullet.source = Source->id;
+	newBullet.bulletTeam = 1;
 	//Update IDTracker
 	BulletNextID++;
 	//Add Bullet to BulletTracker

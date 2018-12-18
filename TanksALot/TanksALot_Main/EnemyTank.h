@@ -17,7 +17,6 @@ namespace Simplex
 		matrix4 model;
 
 		matrix4 top;
-
 		Player* player;
 		int type;
 
@@ -37,7 +36,7 @@ namespace Simplex
 	public:
 		EnemyTank(Player* play);
 		~EnemyTank();
-
+		String id;
 		matrix4 getLeft(void);
 		matrix4 getRight(void);
 		matrix4 getFront(void);
